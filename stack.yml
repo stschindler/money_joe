@@ -1,0 +1,41 @@
+version: "3.1"
+
+services:
+  api:
+    image: stschindler/money_joe-api
+    secrets:
+      - env
+    volumes:
+      - cdn:/cdn/static
+    networks:
+      - api
+    environment:
+      - MJOE_STATIC_ROOT=/cdn/static/
+
+  cdn:
+    image: stschindler/money_joe-cdn
+    volumes:
+      - cdn:/cdn/static
+    networks:
+      - cdn
+
+  proxy:
+    image: stschindler/money_joe-proxy
+    ports:
+      - 80:80
+    networks:
+      - proxy
+      - api
+      - cdn
+
+volumes:
+  cdn:
+
+networks:
+  proxy:
+  api:
+  cdn:
+
+secrets:
+  env:
+    file: ./secrets/env
