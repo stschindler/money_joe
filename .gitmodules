@@ -1,0 +1,9 @@
+[submodule "cdn"]
+	path = cdn
+	url = https://github.com/stschindler/money_joe-cdn
+[submodule "proxy"]
+	path = proxy
+	url = https://github.com/stschindler/money_joe-proxy
+[submodule "api"]
+	path = api
+	url = https://github.com/stschindler/money_joe-api
